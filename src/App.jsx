@@ -26,7 +26,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, { count: 0, userInput: '', color: false })
 
   return (
-    <main className="App" style={{ color: state.color ? '#FFF' : '#FFF952' }}>
+    <main className="App" style={{ color: state.color ? '#0075db' : '#32127a' }}>
       <input
         type="text"
         value={state.userInput}
