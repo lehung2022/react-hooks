@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 22px;
+  font-size: 36px;
 }
 
 body {
@@ -31,11 +31,20 @@ h1 {
   margin-bottom: 1rem;
 }
 
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 button {
-  min-width: 50px;
+  font-size: 1rem;
+  width: 150px;
   padding: 1em;
   margin: 0.25em;
   border-radius: 0.5em;
+  display: grid;
+  place-content: center;
 }
 
 input {

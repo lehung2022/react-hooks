@@ -1,36 +1,60 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
-
-const getArray = () => {
-  for (let i = 0; i < 1000000000; i++) {
-    //do something expensive
-  }
-  return ['Dave', 'Gray'];
-}
+import { useState, useRef } from 'react';
 
 function App() {
-  const [userNumber, setUserNumber] = useState('');
   const [randomInput, setRandomInput] = useState('');
+  const [seconds, setSeconds] = useState(0);
 
-  const fib = useCallback((n) => {
-    return (n <= 1) ? n : fib(n - 1) + fib(n - 2);
-  }, [])
+  const renders = useRef(0);
+  const inputRef = useRef();
+  const timerId = useRef();
 
-  const fibNumber = useMemo(() => fib(userNumber), [userNumber, fib]);
+  const handleChange = (e) => {
+    setRandomInput(e.target.value);
+    renders.current++;
+  }
 
-  const myArray = useMemo(() => getArray(), []);
+  const startTimer = () => {
+    timerId.current = setInterval(() => {
+      renders.current++;
+      setSeconds(prev => prev + 1);
+    }, 1000)
+    inputRef.current.focus();
+  }
 
-  useEffect(() => {
-    console.log('New array')
-  }, [myArray])
+  const stopTimer = () => {
+    clearInterval(timerId.current);
+    timerId.current = 0;
+    inputRef.current.focus();
+  }
+
+  const resetTimer = () => {
+    stopTimer();
+    if (seconds) {
+      renders.current++;
+      setSeconds(0);
+    }
+    inputRef.current.focus();
+  }
 
   return (
     <main className="App">
-      <label>Fibonacci Sequence:</label>
-      <input type="number" value={userNumber} placeholder="Position" onChange={(e) => setUserNumber(e.target.value)} />
-      <p>Number: {fibNumber || "--"}</p>
+      <input
+        ref={inputRef}
+        type="text"
+        value={randomInput}
+        placeholder="Random Input"
+        onChange={handleChange}
+      />
+      <p>Renders: {renders.current}</p>
       <br /><br />
-      <label>Random Input:</label>
-      <input type="text" value={randomInput} placeholder="Random Input" onChange={(e) => setRandomInput(e.target.value)} />
+      <section>
+        <button onClick={startTimer}>Start</button>
+        <button onClick={stopTimer}>Stop</button>
+        <button onClick={resetTimer}>Reset</button>
+      </section>
+      <br /><br />
+      <p>Seconds: {seconds}</p>
+      <br /><br />
       <p>{randomInput}</p>
     </main>
   );
