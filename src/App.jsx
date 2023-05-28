@@ -1,19 +1,9 @@
-import Posts from './components/Posts';
-import Jokes from './components/Jokes';
+import Example1 from "./Example1";
 
-
-function App() {
-
+const App = () => {
   return (
-    <main className="App">
-      <h1>useAxios Hooks</h1>
-      <>
-        <Jokes />
-        <Posts />
-      </>
-
-    </main>
-  );
+    <Example1 />
+  )
 }
 
 export default App;
