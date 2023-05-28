@@ -1,24 +1,19 @@
-import { useRef } from 'react';
-import Modal from './Modal';
+import Posts from './components/Posts';
+import Jokes from './components/Jokes';
+
 
 function App() {
-  const modalRef = useRef();
-
-  const handleOpenModal = () => {
-    modalRef.current.openModal();
-  }
-
-  console.log('parent rendered')
 
   return (
     <main className="App">
-      <p>Parent Component</p>
-      <Modal ref={modalRef} />
-      <button onClick={handleOpenModal}>Open</button>
+      <h1>useAxios Hooks</h1>
+      <>
+        <Jokes />
+        <Posts />
+      </>
+
     </main>
   );
 }
 
 export default App;
-
-
