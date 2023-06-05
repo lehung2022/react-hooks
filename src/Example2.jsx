@@ -15,7 +15,7 @@ const Example2 = () => {
     useEffect(() => {
         startTransition(() => {
             console.log(deferredInput)
-            const filtered = bigArray.filter(item => item.toString().includes(deferredInput))
+            const filtered = bigArray?.filter(item => item.toString()?.includes(deferredInput))
             setList(filtered)
         })
     }, [deferredInput])
@@ -24,7 +24,7 @@ const Example2 = () => {
     const content = <section style={isPending ? { opacity: 0.4 } : null}>
         <p>Searching for: {deferredInput || "All"}</p>
         {isPending ? <p>Loading...</p> : null}
-        <ul>{list.map(item => <li key={item}>{item}</li>)}</ul>
+        <ul>{list?.map(item => <li key={item}>{item}</li>)}</ul>
     </section>
 
     return (

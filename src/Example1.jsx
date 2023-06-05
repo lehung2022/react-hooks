@@ -12,7 +12,7 @@ const Example1 = () => {
         setCount(count + 1)
         // transition update 
         startTransition(() => {
-            const myArr = Array(20000).fill(1).map((el, i) => (count + 20000) - i)
+            const myArr = Array(20000)?.fill(1)?.map((el, i) => (count + 20000) - i)
             setItems(myArr)
         })
     }
@@ -22,7 +22,7 @@ const Example1 = () => {
             <button onClick={handleClick}>{count}</button>
             {isPending ? <p>Loading...</p> : null}
             <p>Deferred: {deferredCount}</p>
-            <ul>{items.map(item => <li key={item}>{item}</li>)}</ul>
+            <ul>{items?.map(item => <li key={item}>{item}</li>)}</ul>
         </div>
     )
 
