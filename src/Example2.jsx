@@ -29,7 +29,7 @@ const Example2 = () => {
 
     return (
         <div className="App">
-            <input type="text" val={inputValue} onChange={handleInput} />
+            <input type="text" value={inputValue} onChange={handleInput} />
             {content}
         </div>
     );
